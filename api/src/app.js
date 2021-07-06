@@ -3,6 +3,9 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
+const prueba = require('./routes/AddDiet.js');
+const recipeRuth = require ('./routes/AddRecipe.js');
+
 
 require('./db.js');
 
@@ -22,6 +25,10 @@ server.use((req, res, next) => {
   next();
 });
 
+
+
+server.use('/prueba', prueba) // Diet!!!!
+server.use('/pruebaRecipe', recipeRuth) // Recipe!!!!
 server.use('/', routes);
 
 // Error catching endware.

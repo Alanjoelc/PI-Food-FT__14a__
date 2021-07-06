@@ -30,12 +30,59 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Recipe } = sequelize.models;
+const { Recipe, Diet } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
+Diet.belongsToMany(Recipe, {through: 'connection_table'});
+Recipe.belongsToMany(Diet, {through: 'connection_table'});
+
+//Funcion
+const creationElementRecipe = async (obj) => {
+  const {title, summary, image, healthScore, analyzedInstructions, spoonacularScore, diets} = await obj;
+  const stepFinal = await orderSteps (analyzedInstructions);
+  const infoRecipe = {
+    title: title,
+    summary: summary,
+    image: image,
+    healthScore: healthScore,
+    steps: stepFinal,
+    spoonacularScore: spoonacularScore,
+    diets: diets,
+  }
+  await sequelize.sync();
+  const newRecipe = await Recipe.create(infoRecipe); //Crea un elemento en la tabla recipe
+  const searchDiet = await Diet.findAll({where: {name: obj.diets}}); //busca las dietas que sean iguales a las dietas que recibe como arg
+  const idDiet = await searchDiet.map(i => i.dataValues.id); //Saca las id de las dietas que sean iguales
+  await newRecipe.addDiet(idDiet); //Agrega en mi tabla intermedia las ID de las dietas
+}
+const orderSteps = (arr) => {
+  if (arr.length === 0) {
+    return 'No steps found for this recipe... :('
+  }
+  if (arr[0].steps === undefined ){
+    return 'No steps found for this recipe... :('
+  }else{
+    let final = ''
+    for(let i = 0; i < arr[0].steps.length; i++){
+      final = final + ' ' + arr[0].steps[i].step
+    }
+    return final
+  }
+}
+const creationElementDiet = async (name) => {
+  await sequelize.sync();
+  await Diet.create({
+    name: name
+  })
+}
+
+
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
+  creationElementDiet,
+  creationElementRecipe,
+  orderSteps,
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
