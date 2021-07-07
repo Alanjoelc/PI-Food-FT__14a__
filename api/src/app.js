@@ -26,10 +26,11 @@ server.use((req, res, next) => {
 });
 
 
-
-server.use('/prueba', prueba) // Diet!!!!
-server.use('/pruebaRecipe', recipeRuth) // Recipe!!!!
 server.use('/', routes);
+server.use('/prueba', prueba); // Diet!!!!
+server.use('/pruebaRecipe', recipeRuth); // Recipe!!!!
+
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars

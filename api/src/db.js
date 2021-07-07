@@ -13,7 +13,7 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
-
+const { Op } = require("sequelize");//
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter((file) => (file.indexOf('.') !== 0) && (file !== basename) && (file.slice(-3) === '.js'))
@@ -30,15 +30,15 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Recipe, Diet } = sequelize.models;
+const { Recipe, Diet, Intermediate } = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Diet.belongsToMany(Recipe, {through: 'connection_table'});
-Recipe.belongsToMany(Diet, {through: 'connection_table'});
+Diet.belongsToMany(Recipe, {through: Intermediate});
+Recipe.belongsToMany(Diet, {through: Intermediate});
 
-//Funcion
+//Funciones!!
 const creationElementRecipe = async (obj) => {
   const {title, summary, image, healthScore, analyzedInstructions, spoonacularScore, diets} = await obj;
   const stepFinal = await orderSteps (analyzedInstructions);
@@ -57,6 +57,7 @@ const creationElementRecipe = async (obj) => {
   const idDiet = await searchDiet.map(i => i.dataValues.id); //Saca las id de las dietas que sean iguales
   await newRecipe.addDiet(idDiet); //Agrega en mi tabla intermedia las ID de las dietas
 }
+
 const orderSteps = (arr) => {
   if (arr.length === 0) {
     return 'No steps found for this recipe... :('
@@ -71,6 +72,7 @@ const orderSteps = (arr) => {
     return final
   }
 }
+
 const creationElementDiet = async (name) => {
   await sequelize.sync();
   await Diet.create({
@@ -78,11 +80,67 @@ const creationElementDiet = async (name) => {
   })
 }
 
+const firstNine = async (name) => {
+  let names = name.toLowerCase()
+  let arr = [];
+  let arr1 = [];
+  await sequelize.sync();
+  let allRecipes = await Recipe.findAll()
+  allRecipes.map(x => {
+    return arr.push(x.dataValues)
+  })
+  for (let i = 0; i < arr.length; i++){
+    let a = arr[i].title.toLowerCase();
+    if(a.includes(names)){
+      arr1.push(arr[i])
+      if(arr1.length == 9){
+        break;
+      }
+    }
+  }
+  return arr1;
+}
+
+const recipeForId = async (id) => {
+  await sequelize.sync();
+  let newId = parseInt(id);
+  let recipe = await Recipe.findOne({where:{id: newId}});
+  if (newId > 100) {
+    return ('XD')
+  }
+  let finalRecipe = recipe.dataValues;
+  let arrDietId = await Intermediate.findAll({where:{recipeId: newId}});
+  let dietsId = arrDietId.map(x => x.dataValues.dietId);
+  let diets = await dietsId.map(x => Diet.findOne({where:{id: x}}));
+  let a = Promise.all(diets)
+  .then(x => x.map(i => i.dataValues.name))
+  .then(x => {
+    Object.defineProperty(finalRecipe, 'Diets',{
+      enumerable: true,
+      configurable: true,
+      writable: true,
+      value: x
+    })
+    return finalRecipe
+  })
+  return a
+}
+
+const allDiets = async () => {
+  let dietsArr = await Diet.findAll();
+  let diets = dietsArr.map(x => x.dataValues.name)
+  return diets;
+}
+
+
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   creationElementDiet,
   creationElementRecipe,
   orderSteps,
+  firstNine,
+  recipeForId,
+  allDiets,
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
