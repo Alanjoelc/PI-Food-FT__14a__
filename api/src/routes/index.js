@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { firstNine, recipeForId, allDiets } = require('../db.js')
+const { firstNine, recipeForId, allDiets, recipesForPage } = require('../db.js')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -32,7 +32,19 @@ router.get('/recipes/:id', (req, res) => {
     
 })
 
-router.get('/types', (req, res) => {
+router.get('/pagenine', (req, res) =>{
+    let {num} = req.query;
+    recipesForPage(num)
+    .then(x => {
+        let a = Promise.all(x)
+        return a
+    })
+    .then(x => res.send(x))
+})
+
+
+
+router.get('/types', (_req, res) => {
     allDiets()
     .then(x => {
         res.json(x)

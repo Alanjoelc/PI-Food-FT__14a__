@@ -126,6 +126,44 @@ const recipeForId = async (id) => {
   return a
 }
 
+
+const recipesForPage = async (number) => {
+  await sequelize.sync();
+  let min = 1;
+  if(number == 1){
+    min = 1
+  } else {
+    min = ((number-1) * 9) + 1;
+  }
+  let max = number * 9;
+  let arr = [];
+  for(let i = min; i < (max + 1); i++){
+    let newId = parseInt(i);
+    let recipe = await Recipe.findOne({where:{id: newId}});
+    if(recipe) {
+    let finalRecipe = recipe.dataValues;
+    let arrDietId = await Intermediate.findAll({where:{recipeId: newId}});
+    let dietsId = arrDietId.map(x => x.dataValues.dietId);
+    let diets = await dietsId.map(x => Diet.findOne({where:{id: x}}));
+    let a = Promise.all(diets)
+    .then(x => x.map(i => i.dataValues.name))
+    .then(x => {
+      Object.defineProperty(finalRecipe, 'Diets',{
+        enumerable: true,
+        configurable: true,
+        writable: true,
+        value: x
+      })
+      return finalRecipe
+    })
+    arr.push(a); 
+    }
+  }
+  return (arr)
+}
+  
+
+
 const allDiets = async () => {
   let dietsArr = await Diet.findAll();
   let diets = dietsArr.map(x => x.dataValues.name)
@@ -141,6 +179,7 @@ module.exports = {
   orderSteps,
   firstNine,
   recipeForId,
+  recipesForPage,
   allDiets,
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };

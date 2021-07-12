@@ -1,11 +1,14 @@
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Prueba from './components/Prueba';
+import NavBar  from './components/NavBar';
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Henry Food</h1>
-    </div>
-  );
-}
 
-export default App;
+export default function App() {return(
+  <Router>
+    <NavBar/>
+    <Route path='/xd'>
+      <Prueba/>
+    </Route>
+  </Router>
+)}
