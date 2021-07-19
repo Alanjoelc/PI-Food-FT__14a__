@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { firstNine, recipeForId, allDiets, recipesForPage } = require('../db.js')
+const { firstNine, recipeForId, allDiets, recipesForPage, recipeWithDiet, orderAzandScore} = require('../db.js')
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
 
@@ -51,6 +51,19 @@ router.get('/types', (_req, res) => {
     })
 })
 
+
+router.get('/filter', (req, res) => {
+    let {diet} = req.query
+    recipeWithDiet(diet)
+    .then(x => res.json(x))
+})
+
+router.get('/accommodate', (req,res) => {
+    let {type} = req.query
+    console.log(type)
+    orderAzandScore(type)
+    .then(x => res.json(x))
+})
 
 
 module.exports = router;

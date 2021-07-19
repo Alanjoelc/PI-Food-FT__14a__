@@ -1,0 +1,41 @@
+.card{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    display: inline-table;
+    width: 26%;
+    height: 500px;
+    position: relative;
+    border-width: initial;
+    border-style: solid;
+    border-color: rgba(214, 206, 206, 0.513);
+    border-radius: 15px;
+    background-color: rgba(133, 180, 166, 0.178);
+    padding: 2px 16px;
+    margin: 5px;
+}
+
+.card:hover{
+    background-color: rgba(228, 104, 104, 0.52);
+}
+
+.cardimgs{
+    width: 100%;
+    height: 290px;
+    padding: 1px 1px 1px 1px;
+    border-radius: 15px;
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.cardtitle{
+    color: rgba(57, 185, 245, 0.65);
+    font: oblique bold 120% cursive;
+}
+
+.carddiets{
+    color: rgb(51, 128, 70);
+    font: condensed 150% sans-serif;
+    width: 400px;;
+}

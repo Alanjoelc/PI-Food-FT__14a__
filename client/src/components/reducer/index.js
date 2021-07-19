@@ -1,8 +1,9 @@
-import { INCREMENT, DECREMENT, PASTE } from "../actions/action";
+import { INCREMENT, DECREMENT, PASTE, RECIPE_SEARCH } from "../actions/action";
 const initialState = {
     count: 1,
     ninerecipe: [],
     check: false,
+    searchState: [],
 }
 
 export default (state = initialState, action) => {
@@ -24,6 +25,12 @@ export default (state = initialState, action) => {
                 ...state,
                 ninerecipe: action.payload,
                 check: true
+            }
+        case RECIPE_SEARCH:
+            return{
+                ...state,
+                searchState: action.payload,
+                count: 1,
             }
         default:
             return state;

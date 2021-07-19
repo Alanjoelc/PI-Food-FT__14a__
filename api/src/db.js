@@ -58,6 +58,26 @@ const creationElementRecipe = async (obj) => {
   await newRecipe.addDiet(idDiet); //Agrega en mi tabla intermedia las ID de las dietas
 }
 
+const PostElementRecipe = async (obj) => {
+  const {title, summary, image, healthScore, steps, spoonacularScore, diets} = await obj;
+  const infoRecipe = {
+    title: title,
+    summary: summary,
+    image: image,
+    healthScore: healthScore,
+    steps: steps,
+    spoonacularScore: spoonacularScore,
+    diets: diets,
+  }
+  await sequelize.sync();
+  const newRecipe = await Recipe.create(infoRecipe);
+  const searchDiet = await Diet.findAll({where: {name: obj.diets}});
+  const idDiet = await searchDiet.map(i => i.dataValues.id);
+  await newRecipe.addDiet(idDiet); 
+}
+
+
+
 const orderSteps = (arr) => {
   if (arr.length === 0) {
     return 'No steps found for this recipe... :('
@@ -105,7 +125,7 @@ const recipeForId = async (id) => {
   await sequelize.sync();
   let newId = parseInt(id);
   let recipe = await Recipe.findOne({where:{id: newId}});
-  if (newId > 100) {
+  if (!recipe) {
     return ('XD')
   }
   let finalRecipe = recipe.dataValues;
@@ -125,7 +145,6 @@ const recipeForId = async (id) => {
   })
   return a
 }
-
 
 const recipesForPage = async (number) => {
   await sequelize.sync();
@@ -161,8 +180,6 @@ const recipesForPage = async (number) => {
   }
   return (arr)
 }
-  
-
 
 const allDiets = async () => {
   let dietsArr = await Diet.findAll();
@@ -170,16 +187,92 @@ const allDiets = async () => {
   return diets;
 }
 
+const recipeWithDiet = async (diet) => {
+  await sequelize.sync(); 
+  let dieta = await Diet.findOne({where:{name: diet}})
+  let idDiet = dieta.dataValues.id
+  let equality = await Intermediate.findAll({where:{dietId: idDiet}})
+  let ArrRecipeID = equality.map(x => x.dataValues.recipeId)
+  let recipes = ArrRecipeID.map(x => recipeForId(x))
+  let a = Promise.all(recipes)
+  .then(x => {
+    return (x)
+  })
+  return a;
+}
+
+const orderAzandScore = async (letter) => {
+  await sequelize.sync();
+  let partialRecipe = await Recipe.findAll()
+  let idRecipes = partialRecipe.map(x => x.dataValues.id)
+  let allRecipe = idRecipes.map(x => recipeForId(x))
+  let x = await Promise.all(allRecipe)
+  .then(a => a) 
+
+  if(x){
+    if(letter === 'a'){
+      x.sort(function(a,b) { 
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
+          return 1;
+        }
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+          return -1;
+        }
+        return 0;
+      })
+      return(x);
+    }
+    if(letter === 'z'){
+      x.sort(function(a,b) { 
+        if (a.title.toLowerCase() > b.title.toLowerCase()) {
+          return -1;
+        }
+        if (a.title.toLowerCase() < b.title.toLowerCase()) {
+          return 1;
+        }
+        return 0;
+      })
+      return(x);
+    }
+    if(letter == 1){  //de mayor a menor
+      x.sort(function(a,b) { 
+        if (a.healthScore > b.healthScore) {
+          return -1;
+        }
+        if (a.healthScore < b.healthScore) {
+          return 1;
+        }
+        return 0;
+      })
+      return(x);
+    }
+    if(letter == 2){ // de menor a mayor
+      x.sort(function(a,b) { 
+        if (a.healthScore > b.healthScore) {
+          return 1;
+        }
+        if (a.healthScore < b.healthScore) {
+          return -1;
+        }
+        return 0;
+      })
+      return(x);
+    }
+  }
+}
 
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
   creationElementDiet,
   creationElementRecipe,
+  PostElementRecipe,
   orderSteps,
   firstNine,
   recipeForId,
   recipesForPage,
   allDiets,
+  recipeWithDiet,
+  orderAzandScore,
   conn: sequelize,     // para importart la conexión { conn } = require('./db.js');
 };
