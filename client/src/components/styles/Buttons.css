@@ -1,0 +1,37 @@
+.AZbutton{
+    background-color: rgba(78, 14, 51, 0.685);
+    color: white;
+    width: 70px;
+    height: 28px;
+    font: oblique bold 100% small-caps;
+    transition: background-color .6s;
+    position:relative;
+    left: 1000px;
+    bottom: 50px;
+    border-radius: 50px;
+}
+.AZbutton:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor: pointer;
+}
+
+
+
+.ScoreButton{
+    background-color: rgba(78, 14, 51, 0.685);
+    color: white;
+    width: 70px;
+    height: 28px;
+    font: oblique bold 100% small-caps;
+    border-radius: 50px;
+    transition: background-color .6s;
+    margin: 5px;
+    position:relative;
+    left: 1000px;
+    bottom: 50px;
+}
+
+.ScoreButton:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor:pointer;
+}

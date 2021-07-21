@@ -1,0 +1,36 @@
+.bodyHm{
+    background-color: #e99787e8;
+    width: 1920px;
+    height: 120px;
+}
+
+.cardHm{
+    width: 100px;
+    background-color: #eed8c996;
+    position: relative;
+    left: 820px;
+    border-radius: 50px;
+    transition: background-color .6s;
+}
+
+.cardHm:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor:pointer;
+}
+
+.imgHm{
+    width: 1920px;
+    height: 865px;
+    position: relative;
+    
+}
+
+.gitHm{
+    width: 100px;
+    height: 100px;
+    background-color: #eed8c996;
+    position: relative;
+    left: 0px;
+    border-radius: 50px;
+    transition: background-color .6s;
+}

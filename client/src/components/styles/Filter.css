@@ -1,0 +1,31 @@
+.selectFilter{
+    width: 200px;
+    height: 25px;
+    font: oblique bold 110% small-caps;
+    cursor: pointer;
+    position:relative;
+    bottom: 10px;
+    border-radius: 50px;
+    left: 50px;
+}
+
+
+.ButtonFilter{
+    background-color: rgba(12, 12, 12, 0.685);
+    color: white;
+    width: 70px;
+    height: 25px;
+    font: oblique bold 100% small-caps;
+    transition: background-color .6s;
+    position:relative;
+    border-radius: 3px;
+    bottom: 11px;
+    margin: 5px;
+    border-radius: 50px;
+    left: 50px;
+}
+
+.ButtonFilter:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor: pointer;
+}

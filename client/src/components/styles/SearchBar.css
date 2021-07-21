@@ -1,0 +1,31 @@
+.inputSB{
+    position: relative;
+    left: 520px;
+    width: 60px;
+    height: 20px;
+    top: 23px;
+    border-radius: 50px;
+    transition: width .6s;
+    font: oblique bold 100% small-caps;
+}
+
+.inputSB:hover{
+    width: 230px;
+}
+
+.buttonSB{
+    background-color: rgb(214, 81, 19);
+    position: relative;
+    left: 520px;
+    top: 23px;
+    width: 60px;
+    height: 27px;
+    margin: 5px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color .6s;
+}
+
+.buttonSB:hover{
+    background-color: rgba(8, 104, 104, 0.541);;
+}

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import axios from 'axios'
 import {getRecipesSearch} from './actions/action'
 import { connect } from 'react-redux'
-
+import './styles/Buttons.css'
 
 async function callb(a) {
     const allRecipes= await axios.default.get(`http://localhost:3001/accommodate?type=${a}`)
@@ -42,8 +42,8 @@ function Buttons ({searchState, getRecipesSearch}){
 
     return(
         <div>
-            <button type='submit' onClick={handeOnClick}>A-Z</button>
-            <button type='submit'onClick={handeOnClickScore}>Score</button>
+            <button type='submit' onClick={handeOnClick} className='AZbutton'>A-Z</button>
+            <button type='submit'onClick={handeOnClickScore} className='ScoreButton'>Score</button>
         </div>
     )
 }

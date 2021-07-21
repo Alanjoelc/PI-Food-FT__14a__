@@ -1,0 +1,38 @@
+.Nav{
+    background-color: #e99787;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    height: 130px;
+}
+
+.homeGt{
+    width: 100px;
+    height: 100px;
+    background-color: #eed8c9;
+    position: relative;
+    border-radius: 50px;
+    transition: background-color .6s;
+    top: 5px;
+    right: 90px;
+}
+
+.homeGt:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor:pointer;
+}
+
+.Gt{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    background-color: #eed8c9;
+    border-radius: 50px;   
+    left: 900px;  
+    top: 5px;
+    transition: background-color .6s;                           
+}
+
+.Gt:hover{
+    background-color: rgba(8, 104, 104, 0.541);
+    cursor:pointer;
+}

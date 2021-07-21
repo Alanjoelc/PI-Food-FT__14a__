@@ -76,8 +76,6 @@ const PostElementRecipe = async (obj) => {
   await newRecipe.addDiet(idDiet); 
 }
 
-
-
 const orderSteps = (arr) => {
   if (arr.length === 0) {
     return 'No steps found for this recipe... :('
@@ -118,7 +116,13 @@ const firstNine = async (name) => {
       }
     }
   }
-  return arr1;
+  let a = arr1.map(x => x.id)
+  let arr2 = [];
+  for (let z = 0; z < a.length; z++){
+    arr2.push(recipeForId(a[z]))
+  }
+  let xd = await Promise.all(arr2)
+  return xd
 }
 
 const recipeForId = async (id) => {
@@ -236,10 +240,10 @@ const orderAzandScore = async (letter) => {
     }
     if(letter == 1){  //de mayor a menor
       x.sort(function(a,b) { 
-        if (a.healthScore > b.healthScore) {
+        if (a.spoonacularScore > b.spoonacularScore) {
           return -1;
         }
-        if (a.healthScore < b.healthScore) {
+        if (a.spoonacularScore < b.spoonacularScore) {
           return 1;
         }
         return 0;
@@ -248,10 +252,10 @@ const orderAzandScore = async (letter) => {
     }
     if(letter == 2){ // de menor a mayor
       x.sort(function(a,b) { 
-        if (a.healthScore > b.healthScore) {
+        if (a.spoonacularScore > b.spoonacularScore) {
           return 1;
         }
-        if (a.healthScore < b.healthScore) {
+        if (a.spoonacularScore < b.spoonacularScore) {
           return -1;
         }
         return 0;

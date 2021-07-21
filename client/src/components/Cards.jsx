@@ -4,19 +4,25 @@ import { connect } from 'react-redux';
 import { nextPage, previousPage } from './actions/action.js';
 import './styles/cards.css'
 
+
 function Cards(recipes) {
     if(recipes && recipes.recipes.length === 1){
         return (
             <div className='cards'>
-                {recipes.recipes.map(c => (<Card 
+                {recipes.recipes.map(c => (
+                <Card 
+                    
                     title={c.title}
                     summary={c.summary}
                     image={c.image}
                     diets={c.Diets}
+                    steps={c.steps}
+                    spoonacularScore={c.spoonacularScore}
+                    healthScore={c.healthScore}
                     key={c.id}
                     id={c.id}
             />))}
-                <button onClick={() => recipes.previousPage()}>Anterior</button>
+                <button onClick={() => recipes.previousPage()} className='previousB'>Previous</button>
             </div>
         );
     }
@@ -25,30 +31,36 @@ function Cards(recipes) {
             return (
                 <div className='cards'>
                     {recipes.recipes.map(c => (<Card 
-                        title={c.title}
-                        summary={c.summary}
-                        image={c.image}
-                        diets={c.Diets}
-                        key={c.id}
-                        id={c.id}
+                    title={c.title}
+                    summary={c.summary}
+                    image={c.image}
+                    diets={c.Diets}
+                    steps={c.steps}
+                    spoonacularScore={c.spoonacularScore}
+                    healthScore={c.healthScore}
+                    key={c.id}
+                    id={c.id}
                 />))}
                     
-                    <button onClick={() => recipes.nextPage()}>Siguiente</button>
+                    <button className='btn-flotante' onClick={() => recipes.nextPage()}>Next</button>
                 </div>
             )
         } else {
         return (
         <div>
             {recipes.recipes.map(c => (<Card className='cards' 
-                title={c.title}
-                summary={c.summary}
-                image={c.image}
-                diets={c.Diets}
-                key={c.id}
-                id={c.id}
+                    title={c.title}
+                    summary={c.summary}
+                    image={c.image}
+                    diets={c.Diets}
+                    steps={c.steps}
+                    spoonacularScore={c.spoonacularScore}
+                    healthScore={c.healthScore}
+                    key={c.id}
+                    id={c.id}
         />))}
-            <button onClick={() => recipes.previousPage()}>Anterior</button>
-            <button onClick={() => recipes.nextPage()}>Siguiente</button>
+            <button className='previousB' onClick={() => recipes.previousPage()}>Previous</button>
+            <button className='btn-flotante' onClick={() => recipes.nextPage()}>Next</button>
         </div>
     );
             }

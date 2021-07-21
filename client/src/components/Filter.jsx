@@ -2,8 +2,11 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import {getRecipesSearch} from './actions/action'
+import './styles/Filter.css'
+
 
 async function callb(a) {
+    console.log(a)
     if(a !== 'Select diet' ) {
     let x = a.toLowerCase().replace(' ', '%20')
     const allRecipes= await axios.default.get(`http://localhost:3001/filter?diet=${x}`)
@@ -27,19 +30,19 @@ function Filter ({searchState, getRecipesSearch}) {
     return(
         <div>
             <form>
-                <select onChange={(e) => setDiets(e.target.value)}>
-                    <option value='Select diet'> Select diet </option>
-                    <option value='Dairy free'> Dairy free </option>
-                    <option value='Fodmap friendly'> Fodmap friendly </option>
-                    <option value='Gluten free'> Gluten free </option>
-                    <option value='Lacto ovo vegetarian'> Lacto ovo vegetarian </option>
-                    <option value='Paleolithic'> Paleolithic </option>
-                    <option value='Pescatarian'> Pescatarian </option>
-                    <option value='Primal'> Primal </option>
-                    <option value='Whole 30'> Whole 30 </option>
-                    <option value='Vegan'> Vegan </option>
+                <select onChange={(e) => setDiets(e.target.value)} className='selectFilter'>
+                    <option value='Select diet' className='selectFilter'> Select diet </option>
+                    <option value='Dairy free' className='selectFilter'> Dairy free </option>
+                    <option value='Fodmap friendly' className='selectFilter'> Fodmap friendly </option>
+                    <option value='Gluten free' className='selectFilter'> Gluten free </option>
+                    <option value='Lacto ovo vegetarian' className='selectFilter'> Lacto ovo vegetarian </option>
+                    <option value='Paleolithic' className='selectFilter'> Paleolithic </option>
+                    <option value='Pescatarian' className='selectFilter'> Pescatarian </option>
+                    <option value='Primal' className='selectFilter'> Primal </option>
+                    <option value='Whole 30' className='selectFilter'> Whole 30 </option>
+                    <option value='Vegan' className='selectFilter'> Vegan </option>
                 </select>
-                <button type='submit' onClick={handleOnClick}> Filtrar </button>
+                <button type='submit' onClick={handleOnClick} className='ButtonFilter'> Filter </button>
             </form>
         </div>
     )

@@ -1,0 +1,207 @@
+.allbody{
+    background-color: #c08f85;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.titleRecipe{
+    font: oblique bold 300% cursive;
+    position: relative;
+    left: 820px;
+    width: 1000px;
+    color: white;
+    cursor: default;
+}
+
+
+.divFm{
+    background-color: rgba(251, 251, 251, 0.705);
+}
+
+.inputFm{
+    width: 306px;
+    position: relative;
+    left: 800px;
+    cursor: pointer;
+}
+
+.titleFm{
+    width: 70px;
+    color:rgb(31, 29, 29);
+    font: oblique bold 200% small-caps;
+    border-radius: 10px;
+    position: relative;
+    left: 300px;
+    cursor: default;
+}
+
+.imageFm{
+    width: 306px;
+    position: relative;
+    left: 742px;
+}
+
+.scoreFm{
+    width: 306px;
+    position: relative;
+    left: 803px;
+}
+
+.healthFm{
+    width: 306px;
+    position: relative;
+    left: 705px;
+}
+
+.summaryFm{
+    width: 307px;
+    height: 100px;
+    position: relative;
+    left: 750px;
+    resize: none;
+    top: 15px;
+}
+
+.stepsFm{
+    width: 308px;
+    height: 170px;
+    position: relative;
+    left: 809px;
+    resize: none;
+    top: 15px;
+}
+
+.summarylabelFm{
+    width: 70px;
+
+    color:rgb(31, 29, 29);
+    font: oblique bold 200% small-caps;
+    border-radius: 10px;
+    position: relative;
+    left: 300px;
+    bottom: 70px;
+}
+
+
+.stepslabelFm{
+    width: 70px;
+    color:rgb(31, 29, 29);
+    font: oblique bold 200% small-caps;
+    border-radius: 10px;
+    position: relative;
+    left: 300px;
+    bottom: 70px;
+}
+
+.diets{
+    width: 95px;
+    color:rgb(31, 29, 29);
+    font: oblique bold 270% small-caps;
+    border-radius: 10px;
+    position: relative;
+    left: 860px;
+    cursor: default;
+}
+
+.gydDiet{
+    font: oblique bold 140% small-caps;
+    position: relative;
+    left: 100px;
+}
+
+.inputGluten{
+    position: relative;
+    left: 300px;
+    cursor: pointer;
+}
+
+.inputDairy{
+    position: relative;
+    left: 311px;
+    cursor: pointer;
+}
+
+.inputLacto{
+    position: relative;
+    left: 212px;
+    cursor: pointer;
+}
+
+.vypDiet{
+    font: oblique bold 140% small-caps;
+    position: relative;
+    left: 860px;
+    bottom: 80px;
+}
+
+.inputVegan{
+    position: relative;
+    left: 1050px;
+    bottom: 80px;
+    cursor: pointer;
+}
+
+.inputPaleo{
+    position: relative;
+    left: 1007px;
+    bottom: 80px;
+    cursor: pointer;
+}
+
+.inputPesca{
+    position: relative;
+    left: 998px;
+    bottom: 80px;
+    cursor: pointer;
+}
+
+.pywDiet{
+    font: oblique bold 140% small-caps;
+    position: relative;
+    left: 1500px;
+    bottom: 160px;
+}
+
+.inputPrimal{
+    position: relative;
+    left: 1700px;
+    bottom: 159px;
+    cursor: pointer;
+}
+
+.inputWhole{
+    position: relative;
+    left: 1675px;
+    bottom: 159px;
+    cursor: pointer;
+}
+
+.inputFod{
+    position: relative;
+    left: 1608px;
+    bottom: 159px;
+    cursor: pointer;
+}
+
+.button {
+    background-color: #205057;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: relative;
+    left: 860px;
+    bottom: 40px;
+    cursor: pointer;
+    box-shadow: 0 9px #999;
+}
+.button:hover {background-color: #439ba8}
+
+.button:active {
+  background-color: #439ba8;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}

@@ -1,0 +1,147 @@
+.color{
+    height: 900px;
+    background-color: #c08f85;
+    max-width: 700;
+    overflow: hidden;
+    margin-top: 5px;
+    border-top-right-radius: 40px;
+    border-top-left-radius: 40px;
+}
+
+.titleDeta{
+    border-top-right-radius: 40px;
+    background-color: #c08f85;
+    height: 60px;
+    font: oblique bold 200% cursive;
+    color: white;
+    position: relative;
+    width:  1300px;
+    left: 600px;
+    cursor: default;
+}
+
+.imageDeta{
+    position: relative;
+    top: 7px;
+    left: 7px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.borderimg{
+    background-color: #ecd8d5;
+    width: 415px;
+    height: 310px;
+    position: relative;
+    left: 740px;
+    border-radius: 10px;
+    max-width: 700px;
+}
+
+.spoo{
+    position: relative;
+    bottom: 300px;
+    left: 30px;
+}
+
+.titlespo{
+    color: white;
+    font: oblique bold 150% small-caps;
+    cursor: default;
+}
+
+.numberspo{
+    color: rgb(192, 225, 226);
+    font: oblique bold 130% small-caps;
+    position: relative;
+    left: 180px;
+    bottom: 52px;
+    width: 25px;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.health{
+    position: relative;
+    bottom: 350px;
+    left: 30px;
+}
+
+.titlehealth{
+    color: white;
+    font: oblique bold 150% small-caps;
+    cursor: default;
+}
+
+.numberheal{
+    color: rgb(192, 225, 226);
+    font: oblique bold 130% small-caps;
+    position: relative;
+    left: 180px;
+    bottom: 52px;
+    width: 25px;
+    border-radius: 5px;
+    cursor: default;
+}
+
+.dietss{
+    position: relative;
+    bottom: 400px;
+    left: 30px;
+}
+
+.titlediets{
+    color: white;
+    font: oblique bold 150% small-caps;
+}
+
+.arrdiets{
+    color: rgb(192, 225, 226);
+    font: oblique bold 130% small-caps;
+    position: relative;
+    left: 180px;
+    bottom: 52px;
+    max-width: 400px;
+}
+
+.summary{
+    position: relative;
+    bottom: 200px;
+    left: 180px;
+}
+
+.titlesumm{
+    color: white;
+    font: oblique bold 150% small-caps;
+    cursor: default;
+}
+
+.textsumm{
+    width: 650px;
+    height: 200px;
+    resize: none;
+    background-color: white;
+    cursor: default;
+}
+
+.steps{
+    position: relative;
+    bottom: 485px;
+    left: 1100px;
+    
+}
+
+.titlestep{
+    color: white;
+    font: oblique bold 150% small-caps;
+    cursor: default;
+}
+
+.textstep{
+    width: 650px;
+    height: 200px;
+    resize: none;
+    background-color: white;
+    max-width: 900px;
+    cursor: default;
+}

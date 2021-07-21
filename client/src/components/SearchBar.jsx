@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux'
 import {getRecipesSearch} from './actions/action'
+import './styles/SearchBar.css'
+
 
 async function recipesSearch(a) {
 
@@ -27,8 +29,8 @@ function SearchBar ({searchState, getRecipesSearch}) {
         <div>
             <div>
                 <label htmlFor='title'/>
-                <input type='text' name='title' id='title' placeholder='Search' onChange={(arg) => setSearch(arg.target.value)} value={search} onSubmit={handleSubmit}/>
-                <button type='submit' onClick={handleSubmit} >🔍</button>
+                <input type='text'className='inputSB' name='title' id='title' placeholder='Search' onChange={(arg) => setSearch(arg.target.value)} value={search} onSubmit={handleSubmit}/>
+                <button type='submit'className='buttonSB' onClick={handleSubmit} >🔍</button>
             </div>
         </div>
     )
